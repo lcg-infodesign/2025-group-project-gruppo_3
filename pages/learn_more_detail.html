@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About the Graphic - Detail View</title>
+    <link rel="stylesheet" href="style_learn_more.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+
+    <style>
+      /* Stile per la freccia di scroll - IDENTICA AL CODICE 1 */
+      #scroll-hint {
+        position: absolute;
+        bottom: -70px;
+        left: 47%; /* MODIFICATO: 47% come nel codice 1 */
+        transform: translateX(-50%);
+        color: #000000 !important;
+        font-size: 40px !important;
+        font-weight: 900 !important;
+        cursor: pointer;
+        z-index: 100;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        animation: bounce 2s infinite;
+        pointer-events: auto;
+        opacity: 1 !important;
+        transition: opacity 0.3s ease-out;
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
+        text-shadow: none !important;
+        font-family: "Helvetica", Arial, sans-serif !important;
+        line-height: 40px;
+      }
+
+      .text-scroll-hint.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        40% {
+          transform: translateX(-50%) translateY(-10px);
+        }
+        60% {
+          transform: translateX(-50%) translateY(-5px);
+        }
+      }
+
+      /* Stile per il contenitore del testo */
+      #text-scroll-area {
+        position: relative;
+        height: 100%;
+      }
+
+      /* Stile per lo scroll automatico del mouse */
+      .scroll-enabled {
+        overflow-y: auto;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+      }
+
+      .scroll-enabled::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+      }
+
+      /* Nuove classi per gli elenchi puntati */
+      .impact-list,
+      .controls-list {
+        margin: 15px 0 25px 20px;
+        padding: 0;
+      }
+
+      .impact-list li,
+      .controls-list li {
+        margin-bottom: 15px;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #000000;
+        list-style-type: disc;
+      }
+
+      .bold-white {
+        color: #ffffff !important;
+        font-weight: bold;
+      }
+
+      /* Fix per l'altezza iniziale */
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Forza il ridimensionamento iniziale */
+      #main-sketch-container {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      #text-container {
+        position: fixed !important;
+      }
+    </style>
+    <script src="sketch_learn_more_detail.js"></script>
+  </head>
+  <body>
+    <div id="main-sketch-container"></div>
+
+    <div id="text-container">
+      <div id="text-scroll-area" class="scroll-enabled">
+        <div id="text-content">
+          <!--sez 1-->
+          <div class="section-title">THE GRAPH: THE IMPACT OF THE ERUPTION</div>
+          <div class="section-text">
+            The detailed visualization is dedicated to an in-depth analysis of a
+            single volcanic eruption and conveys its overall impact through a
+            clear and readable breakdown of its effects. While the
+            <span class="bold-white">overview</span> allows for quick comparison
+            between different events, this section encourages the viewer to
+            focus on a <span class="bold-white">single episode</span>,
+            highlighting its human, material, and economic consequences.
+          </div>
+          <div class="section-text">
+            At the center of the visualization is the
+            <span class="bold-white">impact of the eruption</span>, expressed as
+            the result of the combination of several damage categories. Each
+            element contributes to building a more complete interpretation of
+            the event, transforming numerical data into a
+            <span class="bold-white">narrative</span> of the eruption's
+            intensity and severity.
+          </div>
+
+          <!--sez 2-->
+          <div class="section-title">THE IMPACT SCORE SYSTEM</div>
+          <div class="section-text">
+            The impact of each eruption is calculated through an
+            <span class="bold-white">Impact Score</span>, obtained by summing
+            five standardized categories. Each category is evaluated with a
+            score ranging from <span class="bold-white">1 to 4</span>, where
+            higher values indicate more severe consequences.
+          </div>
+          <div class="section-text">The five categories considered are:</div>
+
+          <!--categorie-->
+          <ul class="impact-list">
+            <li>
+              <span class="bold-white">Damage</span> – Assesses the overall
+              extent of material damage caused by the eruption.
+            </li>
+            <li>
+              <span class="bold-white">Injuries</span> – Measures the number of
+              people injured during the event.
+            </li>
+            <li>
+              <span class="bold-white">Deaths</span> – Indicates the number of
+              fatalities directly attributed to the eruption.
+            </li>
+            <li>
+              <span class="bold-white">Missing</span> – Represents the number of
+              missing or unidentified people following the event.
+            </li>
+            <li>
+              <span class="bold-white">Houses Destroyed</span> – Quantifies the
+              number of residential buildings destroyed.
+            </li>
+          </ul>
+
+          <div class="section-text">
+            The sum of the values assigned to each category determines the
+            <span class="bold-white">total impact score</span> of the eruption,
+            making it directly comparable to other events shown in the overview
+            visualization. A
+            <span class="bold-white">higher score</span> corresponds to an
+            eruption with more extensive and severe consequences.
+          </div>
+
+          <!--sez 3-->
+          <div class="section-title">HOW TO READ THE GRAPH</div>
+          <div class="section-text">
+            The detailed visualization translates the
+            <span class="bold-white">impact score</span> into a clear and
+            immediate representation of its individual components. Each category
+            is displayed separately, allowing the viewer to understand which
+            aspects of the eruption contributed most significantly to the
+            event's overall severity.
+          </div>
+          <div class="section-text">
+            The <span class="bold-white">total score</span> emerges as the final
+            result of the balance between
+            <span class="bold-white">human and material factors</span>, offering
+            a synthetic yet data-driven reading. In this way, the user can move
+            from an analytical view of individual categories to a
+            <span class="bold-white">comprehensive understanding</span> of the
+            eruption as a whole.
+          </div>
+
+          <!--sez 4-->
+          <div class="section-title">
+            ADDITIONAL INFORMATION FOR CONTEXTUALIZING THE ERUPTION
+          </div>
+          <div class="section-text">
+            Beyond impact analysis, the detail page provides a set of
+            information that helps contextualize the eruption in
+            <span class="bold-white">time and space</span>. The total number of
+            eruptions recorded for the volcano is indicated, with the
+            possibility to navigate between
+            <span class="bold-white">previous and subsequent events</span>,
+            placing the eruption within the eruptive history of the volcanic
+            system.
+          </div>
+          <div class="section-text">
+            When available, the <span class="bold-white">exact date</span> of
+            the eruption is reported, specifying day, month, and year. The
+            visualization also includes a description of the
+            <span class="bold-white">volcano type</span>, accompanied by a
+            background illustration. It is important to note that a volcano's
+            typology is not necessarily fixed: the same volcano may change over
+            time in response to several factors, particularly the
+            <span class="bold-white">composition of its magma</span>.
+          </div>
+          <div class="section-text">
+            Finally, a <span class="bold-white">geographic map</span> locates
+            the volcano on a global scale, allowing its position on the planet
+            and the geographical context in which the eruption occurred to be
+            clearly understood.
+          </div>
+
+          <div style="height: 150px"></div>
+        </div>
+      </div>
+
+      <!--freccia scroll in basso-->
+      <div id="scroll-hint" class="text-scroll-hint">V</div>
+    </div>
+  </body>
+</html>

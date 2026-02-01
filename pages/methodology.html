@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Methodology</title>
+    <link rel="stylesheet" href="methodology.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  </head>
+  <body>
+    <!--container pallini-->
+    <div id="p5-container"></div>
+
+    <!--header e navbar-->
+    <header>
+      <div class="logo">
+        <a href="../index.html">Significant Volcanic Eruptions</a>
+      </div>
+      <nav class="nav-desktop">
+        <a href="../index.html">Homepage</a>
+        <a href="team.html">Team</a>
+        <a href="methodology.html">Methodology</a>
+        <a href="overview.html" class="explore">Explore</a>
+      </nav>
+    </header>
+
+    <!--main content-->
+    <main id="main-content">
+      <!--titolo e sottotitolo-->
+      <div class="screen-title" id="dynamic-title">METHODOLOGY</div>
+      <div class="screen-subtitle" id="dynamic-subtitle">
+        HOW WE BUILT OUR VISUAL STORY.
+      </div>
+
+      <div class="main-container">
+        <!--testo a sx-->
+        <div class="text-scroll-container">
+          <div class="text-content" id="text-content">
+            <div class="text-section" data-section="1">
+              <div class="section-title">OUR DESIGN METHODOLOGY</div>
+              <div class="section-text">
+                To tell the story of volcanic eruptions in a meaningful and
+                accessible way, we began with a trusted scientific source: the
+                volcano dataset provided by
+                <span class="bold-text"
+                  >NOAA – National Centers for Environmental Information
+                  (National Oceanic and Atmospheric Administration)</span
+                >.
+              </div>
+
+              <div class="section-title">DATA ORGANIZATION</div>
+              <div class="section-text">
+                We first restructured the dataset into three thematic
+                macro-categories:
+              </div>
+
+              <ul class="impact-list">
+                <li>
+                  <span class="bold-text">CORE INFORMATION</span> - Volcano
+                  name, eruption date, geographic location
+                </li>
+                <li>
+                  <span class="bold-text">SECONDARY DETAILS</span> - Volcano
+                  type, historical context
+                </li>
+                <li>
+                  <span class="bold-text">IMPACT METRICS</span> - Human,
+                  structural, and economic effects
+                </li>
+              </ul>
+
+              <div class="section-text">
+                Based on this structure, we defined two complementary levels of
+                visualization:
+              </div>
+
+              <ul class="impact-list">
+                <li>
+                  An <span class="bold-text">OVERVIEW</span> to quickly compare
+                  eruptions at a glance
+                </li>
+                <li>
+                  A <span class="bold-text">DETAILED VIEW</span> to explore
+                  individual events in depth
+                </li>
+              </ul>
+            </div>
+
+            <div class="text-section" data-section="2">
+              <div class="section-title">OVERVIEW VISUALIZATION</div>
+              <div class="section-text">
+                In the overview, each eruption is represented by four key
+                elements:
+              </div>
+
+              <ul class="impact-list">
+                <li>
+                  <span class="bold-text">YEAR AND TIME PERIOD</span> of the
+                  event
+                </li>
+                <li><span class="bold-text">NAME OF THE VOLCANO</span></li>
+                <li>
+                  <span class="bold-text"
+                    >VEI (VOLCANIC EXPLOSIVITY INDEX)</span
+                  >
+                </li>
+                <li>
+                  <span class="bold-text">OVERALL IMPACT SCORE</span>, derived
+                  from five standardized impact categories
+                </li>
+              </ul>
+
+              <div class="section-text">
+                Each eruption receives a
+                <span class="bold-text">TOTAL IMPACT SCORE</span> by summing the
+                values across all five categories. This score ranges from
+                <span class="bold-text">1 (MINIMAL IMPACT)</span> to
+                <span class="bold-text">20 (MAXIMUM SEVERITY)</span>, enabling
+                direct comparison between events.
+              </div>
+
+              <div class="section-title">IMPACT CATEGORIES</div>
+              <div class="section-text">
+                The impact categories are defined as follows:
+              </div>
+
+              <table class="impact-table">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Level 1</th>
+                    <th>Level 2</th>
+                    <th>Level 3</th>
+                    <th>Level 4</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Deaths</td>
+                    <td>1–50</td>
+                    <td>51–100</td>
+                    <td>101–1,000</td>
+                    <td>1,001+</td>
+                  </tr>
+                  <tr>
+                    <td>Injuries</td>
+                    <td>1–50</td>
+                    <td>51–100</td>
+                    <td>101–1,000</td>
+                    <td>1,001+</td>
+                  </tr>
+                  <tr>
+                    <td>Houses Destroyed</td>
+                    <td>1–50</td>
+                    <td>51–100</td>
+                    <td>101–1,000</td>
+                    <td>1,001+</td>
+                  </tr>
+                  <tr>
+                    <td>Missing</td>
+                    <td>1–50</td>
+                    <td>51–100</td>
+                    <td>101–1,000</td>
+                    <td>1,001+</td>
+                  </tr>
+                  <tr>
+                    <td>Economic Damage*</td>
+                    <td>&lt; $2.4 million (LIMITED)</td>
+                    <td>$2.4–12 million (MODERATE)</td>
+                    <td>$12–57.6 million (SEVERE)</td>
+                    <td>≥ $60 million (EXTREME)</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!--nota-->
+              <div class="table-note">
+                *For events without a monetary damage assessment, a four‑level
+                classification scale was applied, as shown in the “Damage”
+                column. When a dollar value was available, a descriptive label
+                was still included for research purposes. Where feasible, an
+                approximate monetary estimate was inferred from the description
+                to assign the appropriate category. Single descriptive terms
+                were mapped to categories based on their established usage in
+                comparable sources. In the absence of further detail, terms were
+                interpreted as follows: <b>LIMITED</b> (slight, minor, light),
+                <b>MODERATE</b> (medium‑level damage), <b>SEVERE</b> (major,
+                extensive, heavy), <b>EXTREME</b> (catastrophic).
+                <br />
+                <br /><b
+                  >Descriptive terms correspond to the 2026 dollar values.</b
+                >
+              </div>
+            </div>
+
+            <div class="text-section" data-section="3">
+              <div class="section-title">DATA INTERPRETATION</div>
+              <div class="section-text">
+                In this chart, some segments may appear in gray with a hover
+                label reading
+                <span class="bold-text">"NO DATA AVAILABLE."</span> This
+                indicates that, for this specific eruption, the original dataset
+                lacks reliable information for that impact category—not that no
+                impact occurred, but that it was not documented or quantified in
+                the source.
+              </div>
+
+              <div class="section-text">
+                Our approach to data interpretation emphasizes
+                <span class="bold-text">TRANSPARENCY</span> about data
+                limitations. When information is missing or uncertain, we
+                clearly indicate this to users rather than making assumptions or
+                interpolating values.
+              </div>
+
+              <div class="section-text">
+                This methodology ensures that our visualizations remain both
+                <span class="bold-text">SCIENTIFICALLY ACCURATE</span> and
+                <span class="bold-text">ETHICALLY RESPONSIBLE</span>, providing
+                users with a clear understanding of both what we know and what
+                we don't know about each volcanic event.
+              </div>
+
+              <div class="section-title">VISUALIZATION PRINCIPLES</div>
+
+              <ul class="impact-list">
+                <li>
+                  <span class="bold-text">CLARITY OVER COMPLEXITY</span> -
+                  Prioritize understandable representations
+                </li>
+                <li>
+                  <span class="bold-text">ACCURACY OVER AESTHETICS</span> -
+                  Never sacrifice truth for visual appeal
+                </li>
+                <li>
+                  <span class="bold-text">TRANSPARENCY OVER ASSUMPTION</span> -
+                  Clearly indicate data gaps and limitations
+                </li>
+                <li>
+                  <span class="bold-text">CONTEXT OVER ISOLATION</span> - Show
+                  data in historical and geographical context
+                </li>
+              </ul>
+
+              <div class="section-text">
+                By adhering to these principles, we create visualizations that
+                are not only informative but also honest about the limitations
+                of the underlying data, allowing users to draw meaningful
+                conclusions while understanding the boundaries of what can be
+                known from the available information.
+              </div>
+            </div>
+
+            <!--footer-->
+            <div class="footer-space"></div>
+          </div>
+
+          <!--freccia scrolling-->
+          <div class="text-scroll-hint" id="text-scroll-hint">v</div>
+        </div>
+
+        <!--img-->
+        <div class="image-container">
+          <img
+            src="../assets/foto_screen_3.png"
+            alt="Methodology overview"
+            class="methodology-image active"
+            id="methodology-image-1"
+          />
+          <img
+            src="../assets/foto_screen_2.png"
+            alt="Overview visualization"
+            class="methodology-image"
+            id="methodology-image-2"
+          />
+          <img
+            src="../assets/foto_screen_1.png"
+            alt="Data interpretation visualization"
+            class="methodology-image"
+            id="methodology-image-3"
+          />
+        </div>
+      </div>
+
+      <!--bottone dataset-->
+      <button class="learn-more-btn" id="learn-more-btn">
+        Explore the dataset
+      </button>
+    </main>
+
+    <!--footer-->
+    <footer id="html-footer">
+      <!--col 1-->
+      <div class="footer-col">
+        <div class="studio-header">
+          <div class="studio-title">
+            Computer Graphics Studio for Information Design
+          </div>
+          <div class="academic-year">A.Y. 2025/2026</div>
+          <a
+            href="https://www.designdellacomunicazione.polimi.it"
+            class="degree-link"
+            target="_blank"
+            rel="noopener"
+          >
+            Bachelor's Degree in Communication Design
+          </a>
+
+          <!--polimi logo-->
+          <div class="polimi-logo-container">
+            <img
+              src="../assets/logo_polimi.svg"
+              alt="Politecnico di Milano"
+              class="polimi-logo"
+            />
+          </div>
+        </div>
+
+        <div class="project-team">
+          <div class="team-label">Project by</div>
+          <div class="members-list">
+            <div class="member-name">Alice Comini</div>
+            <div class="member-name">Matilde Curino</div>
+            <div class="member-name">Greta Franco</div>
+            <div class="member-name">Carlo Galli</div>
+            <div class="member-name">Ilaria La Spada</div>
+            <div class="member-name">Annalisa Testaverde</div>
+          </div>
+        </div>
+      </div>
+
+      <!--col 2-->
+      <div class="footer-col">
+        <div class="license-section">
+          <div class="license-content">
+            <div class="license-header">
+              <span class="copyright-symbol">©</span>
+              <a
+                href="https://creativecommons.org"
+                class="license-badge"
+                target="_blank"
+                rel="noopener"
+              >
+                CC-BY 4.0
+              </a>
+              The authors.
+            </div>
+
+            <div class="license-text">
+              Except where otherwise noted, all content on this website is
+              licensed under the
+              <a
+                href="https://creativecommons.org/licenses/by/4.0/"
+                class="license-link"
+                target="_blank"
+                rel="noopener"
+              >
+                Creative Commons Attribution 4.0 International License (CC BY
+                4.0) </a
+              >. You are free to share and adapt the material, including for
+              commercial use, provided appropriate credit is given.
+            </div>
+
+            <div class="license-text">
+              For questions about attribution or reuse, contact us at
+              <br /><a
+                href="mailto:alice.comini@mail.polimi.it"
+                class="contact-email"
+                >alice.comini@mail.polimi.it</a
+              >
+              <br /><a
+                href="mailto:matilde.curino@mail.polimi.it"
+                class="contact-email"
+                >matilde.curino@mail.polimi.it</a
+              >
+              <br /><a
+                href="mailto:greta.franco@mail.polimi.it"
+                class="contact-email"
+                >greta.franco@mail.polimi.it</a
+              >
+              <br /><a
+                href="mailto:carlo11.galli@mail.polimi.it"
+                class="contact-email"
+                >carlo11.galli@mail.polimi.it</a
+              >
+              <br /><a
+                href="mailto:ilaria.laspada@mail.polimi.it"
+                class="contact-email"
+                >ilaria.laspada@mail.polimi.it</a
+              >
+              <br /><a
+                href="mailto:annalisa.testaverde@mail.polimi.it"
+                class="contact-email"
+                >annalisa.testaverde@mail.polimi.it</a
+              >
+            </div>
+          </div>
+
+          <div class="license-spacer"></div>
+        </div>
+      </div>
+
+      <!--col 3-->
+      <div class="footer-col">
+        <div class="faculty-section">
+          <div class="faculty-title">Faculty</div>
+          <div class="faculty-list">
+            <div class="faculty-name">Michele Mauri</div>
+            <div class="faculty-name">Davide Conficconi</div>
+          </div>
+
+          <div class="assistants-title">Teaching Assistants</div>
+          <div class="assistants-list">
+            <div class="assistant-name">Alessandra Facchin</div>
+            <div class="assistant-name">Alessandro Nazzari</div>
+          </div>
+        </div>
+
+        <!--DensityDesign e NECST-->
+        <div class="logos-container">
+          <div class="logo-item">
+            <img
+              src="../assets/densitydesign.svg"
+              alt="DensityDesign Lab"
+              class="design-logo"
+            />
+          </div>
+
+          <div class="logo-item">
+            <img
+              src="../assets/NECST.svg"
+              alt="NECST"
+              class="designnecst-logo"
+            />
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!--navigazione-->
+    <div id="fixed-dots">
+      <div class="fixed-dot active" data-section="1"></div>
+      <div class="fixed-dot" data-section="2"></div>
+      <div class="fixed-dot" data-section="3"></div>
+    </div>
+    <script src="methodology.js"></script>
+  </body>
+</html>

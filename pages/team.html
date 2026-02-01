@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Project</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
+    <script src="sketch_team.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+        min-height: 100vh;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      header {
+        width: 100%;
+        padding: 25px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+        background-color: white;
+        transition: all 0.3s ease;
+      }
+
+      .logo {
+        font-weight: bold;
+        font-size: 15px;
+        color: #000000;
+        z-index: 1001;
+      }
+
+      .logo a {
+        text-decoration: none;
+        color: #000000;
+      }
+
+      .nav-desktop {
+        display: flex;
+        gap: 40px;
+      }
+
+      .nav-desktop a {
+        text-decoration: none;
+        color: #000000;
+        font-size: 15px;
+        transition: color 0.2s;
+        position: relative;
+      }
+
+      .nav-desktop a.explore {
+        color: #ff2b00;
+        font-weight: bold;
+      }
+
+      .nav-desktop a:hover {
+        color: #ff2b00;
+      }
+
+      .page-content {
+        padding-top: 90px;
+        position: relative;
+        z-index: 1;
+        min-height: calc(100vh - 320px);
+      }
+
+      canvas {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: auto;
+        z-index: 1;
+        background: white;
+      }
+
+      #sketch-container {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      footer {
+        width: 100%;
+        border-top: 2px solid #ff2b00;
+        padding: 80px max(5%, 20px) 80px max(5%, 20px);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 80px;
+        position: relative;
+        color: #000000;
+        font-size: 14px;
+        background: #fff;
+        line-height: 1.5;
+        min-height: 320px;
+        box-sizing: border-box;
+        z-index: 2;
+        transition: all 0.3s ease;
+        max-width: 1800px;
+      }
+
+      .footer-col {
+        display: flex;
+        flex-direction: column;
+        min-height: 250px;
+      }
+
+      .studio-header {
+        margin-bottom: 20px;
+      }
+
+      .studio-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #222;
+        margin-bottom: 8px;
+        line-height: 1.3;
+      }
+
+      .academic-year {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 10px;
+        font-weight: 400;
+      }
+
+      .degree-link {
+        color: #000000;
+        text-decoration: none;
+        font-size: 14px;
+        padding-bottom: 1px;
+        transition: all 0.2s;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+
+      .degree-link:hover {
+        color: #ff2b00;
+      }
+
+      .polimi-logo-container {
+        margin-top: 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .polimi-logo {
+        max-height: 105px;
+        max-width: 200px;
+        width: 100%;
+        height: auto;
+        opacity: 0.9;
+        transition: opacity 0.2s;
+        object-fit: contain;
+      }
+
+      .polimi-logo:hover {
+        opacity: 1;
+      }
+
+      .project-team {
+        margin-top: 15px;
+      }
+
+      .team-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+      }
+
+      .members-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .member-name {
+        font-size: 14px;
+        color: #444;
+      }
+
+      .license-section {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .license-content {
+        width: 100%;
+        max-width: 350px;
+      }
+
+      .license-header {
+        font-size: 13px;
+        color: #222;
+        margin-bottom: 12px;
+        line-height: 1.4;
+      }
+
+      .copyright-symbol {
+        font-size: 14px;
+        margin-right: 4px;
+      }
+
+      .license-badge {
+        background-color: #f5f5f5;
+        border: 1px solid #ddd;
+        padding: 4px 8px;
+        border-radius: 3px;
+        font-size: 12px;
+        margin: 0 4px;
+        text-decoration: none;
+        color: #333;
+        display: inline-block;
+      }
+
+      .license-badge:hover {
+        background-color: #eee;
+        border-color: #ccc;
+      }
+
+      .license-text {
+        font-size: 13px;
+        color: #555;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        margin-top: 30px;
+      }
+
+      .license-link {
+        color: #000000;
+        text-decoration: underline;
+        font-size: 13px;
+      }
+
+      .contact-email {
+        color: #ff2b00;
+        font-weight: 500;
+        font-size: 13px;
+        word-break: break-all;
+      }
+
+      .license-spacer {
+        height: 20px;
+      }
+
+      .faculty-section {
+        margin-bottom: 20px;
+      }
+
+      .faculty-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+      }
+
+      .faculty-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .faculty-name {
+        font-size: 14px;
+        color: #444;
+      }
+
+      .assistants-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+      }
+
+      .assistants-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 25px;
+      }
+
+      .assistant-name {
+        font-size: 14px;
+        color: #444;
+      }
+
+      .logos-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 0px;
+      }
+
+      .logo-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .design-logo {
+        max-height: 95px;
+        max-width: 130px;
+        width: 100%;
+        height: auto;
+        opacity: 0.9;
+        transition: opacity 0.2s;
+        margin-bottom: 5px;
+      }
+
+      .designnecst-logo {
+        max-height: 95px;
+        max-width: 130px;
+        width: 100%;
+        height: auto;
+        opacity: 0.9;
+        transition: opacity 0.2s;
+        margin-bottom: 5px;
+        display: block;
+        object-fit: contain;
+      }
+
+      .design-logo:hover,
+      .designnecst-logo:hover {
+        opacity: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--header-->
+    <header>
+      <div class="logo">
+        <a href="../index.html">Significant Volcanic Eruptions</a>
+      </div>
+
+      <!--nav-->
+      <nav class="nav-desktop">
+        <a href="../index.html">Homepage</a>
+        <a href="team.html">Team</a>
+        <a href="methodology.html">Methodology</a>
+        <a href="overview.html" class="explore">Explore</a>
+      </nav>
+    </header>
+
+    <!--main content-->
+    <div class="page-content">
+      <div id="sketch-container"></div>
+    </div>
+
+    <!--footer-->
+    <footer>
+      <!--col 1-->
+      <div class="footer-col">
+        <div class="studio-header">
+          <div class="studio-title">
+            Computer Graphics Studio for Information Design
+          </div>
+          <div class="academic-year">A.Y. 2025/2026</div>
+          <a
+            href="https://www.designdellacomunicazione.polimi.it"
+            class="degree-link"
+            target="_blank"
+            rel="noopener"
+          >
+            Bachelor's Degree in Communication Design
+          </a>
+
+          <!--polimi logo-->
+          <div class="polimi-logo-container">
+            <img
+              src="../assets/logo_polimi.svg"
+              alt="Politecnico di Milano"
+              class="polimi-logo"
+            />
+          </div>
+        </div>
+
+        <div class="project-team">
+          <div class="team-label">Project by</div>
+          <div class="members-list">
+            <div class="member-name">Alice Comini</div>
+            <div class="member-name">Matilde Curino</div>
+            <div class="member-name">Greta Franco</div>
+            <div class="member-name">Carlo Galli</div>
+            <div class="member-name">Ilaria La Spada</div>
+            <div class="member-name">Annalisa Testaverde</div>
+          </div>
+        </div>
+      </div>
+
+      <!--col 2-->
+      <div class="footer-col">
+        <div class="license-section">
+          <div class="license-content">
+            <div class="license-header">
+              <span class="copyright-symbol">©</span>
+              <a
+                href="https://creativecommons.org"
+                class="license-badge"
+                target="_blank"
+                rel="noopener"
+              >
+                CC-BY 4.0
+              </a>
+              The authors.
+            </div>
+
+            <div class="license-text">
+              Except where otherwise noted, all content on this website is
+              licensed under the
+              <a
+                href="https://creativecommons.org/licenses/by/4.0/"
+                class="license-link"
+                target="_blank"
+                rel="noopener"
+              >
+                Creative Commons Attribution 4.0 International License (CC BY
+                4.0) </a
+              >. You are free to share and adapt the material, including for
+              commercial use, provided appropriate credit is given.
+            </div>
+
+            <div class="license-text">
+              For questions about attribution or reuse, contact us at
+              <br /><a
+                href="mailto:alice.comini@mail.polimi.it"
+                class="contact-email"
+                >alice.comini@mail.polimi.it</a
+              >
+              <br /><a
+                href="mailto:matilde.curino@mail.polimi.it"
+                class="contact-email"
+                >matilde.curino@mail.polimi.it</a
+              >
+              <br /><a
+                href="mailto:greta.franco@mail.polimi.it"
+                class="contact-email"
+                >greta.franco@mail.polimi.it</a
+              >
+              <br /><a
+                href="mailto:carlo11.galli@mail.polimi.it"
+                class="contact-email"
+                >carlo11.galli@mail.polimi.it</a
+              >
+              <br /><a
+                href="mailto:ilaria.laspada@mail.polimi.it"
+                class="contact-email"
+                >ilaria.laspada@mail.polimi.it</a
+              >
+              <br /><a
+                href="mailto:annalisa.testaverde@mail.polimi.it"
+                class="contact-email"
+                >annalisa.testaverde@mail.polimi.it</a
+              >
+            </div>
+          </div>
+
+          <div class="license-spacer"></div>
+        </div>
+      </div>
+
+      <!--col 3-->
+      <div class="footer-col">
+        <div class="faculty-section">
+          <div class="faculty-title">Faculty</div>
+          <div class="faculty-list">
+            <div class="faculty-name">Michele Mauri</div>
+            <div class="faculty-name">Davide Conficconi</div>
+          </div>
+
+          <div class="assistants-title">Teaching Assistants</div>
+          <div class="assistants-list">
+            <div class="assistant-name">Alessandra Facchin</div>
+            <div class="assistant-name">Alessandro Nazzari</div>
+          </div>
+        </div>
+
+        <!--DensityDesign e NECST-->
+        <div class="logos-container">
+          <div class="logo-item">
+            <img
+              src="../assets/densitydesign.svg"
+              alt="DensityDesign Lab"
+              class="design-logo"
+            />
+          </div>
+
+          <div class="logo-item">
+            <img
+              src="../assets/NECST.svg"
+              alt="NECST"
+              class="designnecst-logo"
+            />
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

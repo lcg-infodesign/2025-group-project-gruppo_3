@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About the Graphic</title>
+    <link rel="stylesheet" href="style_learn_more.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+
+    <style>
+      /* Stile per la freccia di scroll - COME ORIGINALE */
+      #scroll-hint {
+        position: absolute;
+        bottom: -70px;
+        left: 47%;
+        transform: translateX(-50%);
+        color: #000000 !important;
+        font-size: 40px !important;
+        font-weight: 900 !important;
+        cursor: pointer;
+        z-index: 100;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        animation: bounce 2s infinite;
+        pointer-events: auto;
+        opacity: 1 !important;
+        transition: opacity 0.3s ease-out;
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
+        text-shadow: none !important;
+        font-family: "Helvetica", Arial, sans-serif !important;
+        line-height: 40px;
+      }
+
+      .text-scroll-hint.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        40% {
+          transform: translateX(-50%) translateY(-10px);
+        }
+        60% {
+          transform: translateX(-50%) translateY(-5px);
+        }
+      }
+
+      /* Stile per il contenitore del testo */
+      #text-scroll-area {
+        position: relative;
+        height: 100%;
+      }
+
+      /* Stile per lo scroll automatico del mouse */
+      .scroll-enabled {
+        overflow-y: auto;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+      }
+
+      .scroll-enabled::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+      }
+
+      /* Più spazio per la leggenda */
+      #legend-container {
+        margin-top: 15px !important; /* PIÙ SPAZIO SOPRA */
+        margin-bottom: 25px !important; /* PIÙ SPAZIO SOTTO */
+      }
+    </style>
+    <script src="sketch_learn_more_overview.js"></script>
+  </head>
+  <body>
+    <div id="main-sketch-container"></div>
+
+    <div id="text-container">
+      <div id="text-scroll-area" class="scroll-enabled">
+        <div id="text-content">
+          <!--sez 1-->
+          <div class="section-title">THE GRAPH: A MAP OF VOLCANIC POWER</div>
+          <div class="section-text">
+            This visualization transforms volcanic eruption data into an
+            interactive map that tells the story of Earth's destructive power.
+            Each black dot represents a real event, positioned on a large
+            concentric circle. Its position is not random: it is determined by
+            an <span class="bold-white">Impact Score</span>, a score between 1
+            and 16, calculated by adding five key indicators.
+          </div>
+
+          <!--sez 2-->
+          <div class="section-title">THE IMPACT SCORE SYSTEM</div>
+          <div class="section-text">
+            The <span class="bold-white">Impact Score</span> (from 1 to 16) is
+            calculated by summing five indicators, each rated from 0 to 4:
+          </div>
+
+          <!-- elenco impatto-->
+          <ul class="impact-list">
+            <li>
+              <span class="bold-white">DEATHS</span> - From 1 to 4, based on the
+              number of victims (from 1-50 to over 1,000).
+            </li>
+            <li>
+              <span class="bold-white">INJURIES</span> - From 1 to 4, based on
+              injured people (from 1-50 to over 1,000).
+            </li>
+            <li>
+              <span class="bold-white">DESTROYED HOUSES</span> - From 1 to 4,
+              based on lost buildings (from 1-50 to over 1,000).
+            </li>
+            <li>
+              <span class="bold-white">ECONOMIC DAMAGE</span> - From 1 to 4,
+              based on estimated costs (from less than 1 million to over 25
+              million dollars).
+            </li>
+            <li>
+              <span class="bold-white">MISSING</span> - From 0 to 4, to indicate
+              the number of missing or unidentified people (from 1-50 to over
+              1,000; 0 if not relevant or not documented).
+            </li>
+          </ul>
+
+          <div class="section-text">
+            An eruption with a score of 16 was devastating in all aspects; one
+            with a score of 1, instead, had minimal impact.
+          </div>
+
+          <!--sez 4-->
+          <div class="section-title" style="margin-bottom: 1px">
+            HOW TO READ THE GRAPH
+          </div>
+
+          <!--legenda-->
+          <div
+            id="legend-container"
+            style="width: 100%; height: 130px; margin: 15px auto 25px auto"
+          ></div>
+
+          <div class="section-text">
+            <span class="bold-white">THE BLACK DOTS </span>: Each dot represents
+            a volcanic eruption. Hovering the mouse over a dot displays a window
+            with the <span class="bold-white">volcano's name</span> and the
+            <span class="bold-white">eruption year</span>. Clicking on the dot
+            directly accesses the event's
+            <span class="bold-white">detail page</span>, where you can explore
+            the data further.
+          </div>
+
+          <div class="section-text">
+            <span class="bold-white">THE CONCENTRIC CIRCLES</span>: The
+            <span class="bold-white">outer ring</span> corresponds to score 1
+            (minimal impact), while the
+            <span class="bold-white">bright red central point</span> represents
+            the maximum score of 16 (maximum devastation). The closer a dot is
+            to the center, the more severe the event was.
+          </div>
+
+          <div class="section-text">
+            <span class="bold-white">THE CONTINENTAL WEDGES</span>: The circle
+            is divided into five <span class="bold-white">wedges</span>, each
+            representing a continent: <span class="bold-white">Asia</span>,
+            <span class="bold-white">Americas</span>,
+            <span class="bold-white">Europe</span>,
+            <span class="bold-white">Oceania</span>,
+            <span class="bold-white">Africa</span>. Within each wedge, eruptions
+            are arranged <span class="bold-white">clockwise</span>, starting
+            from the oldest event (4200 BC) to
+            <span class="bold-white">today</span>.
+          </div>
+
+          <!--sez 5-->
+          <div class="section-title">
+            EXTERNAL CONTROLS: FILTERS AND ANIMATION
+          </div>
+
+          <div class="section-text">
+            On the left side of the page, tools are available to explore the
+            data dynamically.
+          </div>
+
+          <ul class="controls-list">
+            <li>
+              <span class="bold-white">SELECT TIME FRAME</span> - With the
+              arrows << and >>, you can select a specific time interval (for
+              example, "800 AD - 1800 AD"). The graph updates automatically,
+              showing only eruptions that occurred in that period.
+            </li>
+            <li>
+              <span class="bold-white">SELECT YEAR</span> - With the arrows <
+              and >, you can navigate year by year among those present in the
+              dataset. Not all years are present, as the dataset does not
+              include records for every single year. In recent decades, however,
+              precision increases significantly, allowing analysis of individual
+              years like 2005.
+            </li>
+            <li>
+              <span class="bold-white">START ANIMATION</span> - Starts an
+              automatic animation that scrolls through available years in
+              succession, highlighting eruptions that occurred in each year with
+              a <span class="bold-black">luminous pulsating effect</span> (a red
+              glow that expands around the dot).
+            </li>
+          </ul>
+
+          <div style="height: 150px"></div>
+        </div>
+      </div>
+
+      <!--freccetto scrolling  in basso-->
+      <div id="scroll-hint" class="text-scroll-hint">V</div>
+    </div>
+  </body>
+</html>

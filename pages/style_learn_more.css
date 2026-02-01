@@ -1,0 +1,272 @@
+body,
+html {
+  margin: 0; 
+  padding: 0; 
+  overflow: hidden; 
+  font-family: "Helvetica", Arial, sans-serif; 
+  background-color: #ff2b00; 
+}
+
+canvas {
+  display: block; 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  z-index: 1; 
+}
+
+#text-container {
+  position: absolute; 
+  top: 250px; 
+  left: 40px; 
+  width: 600px; 
+  height: 450px; 
+  z-index: 2; 
+  pointer-events: auto; 
+  background-color: transparent; 
+}
+
+#text-scroll-area {
+  position: relative; 
+  width: 100%; 
+  height: 95%; 
+  overflow-y: auto; 
+  padding-right: 8px; 
+  margin-bottom: 40px; 
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#text-scroll-area::-webkit-scrollbar {
+  display: none; 
+}
+
+#text-content {
+  width: 100%; 
+  color: #000000; 
+  font-size: 16px; 
+  font-weight: bold;
+  line-height: 1.6; 
+  padding-bottom: 80px; 
+}
+
+.section-title {
+  font-size: 24px; 
+  color: #ffffff; 
+  margin-top: 40px;
+  margin-bottom: 20px; 
+}
+
+.section-title:first-child {
+  margin-top: 0; 
+}
+
+.section-text {
+  margin-bottom: 20px; 
+  color: #000000; 
+}
+
+.bold-white {
+  font-weight: bold; 
+  color: #ffffff; 
+}
+
+.bold-black {
+  font-weight: bold; 
+  color: #000000; 
+}
+
+.impact-list {
+  margin: 25px 0; 
+  padding-left: 40px; 
+  color: #000000; 
+}
+
+.impact-list li {
+  margin-bottom: 15px; 
+  line-height: 1.6; 
+}
+
+.controls-list {
+  margin: 25px 0; 
+  padding-left: 20px; 
+  list-style-type: disc; 
+  color: #000000; 
+}
+
+.controls-list li {
+  margin-bottom: 20px; 
+  line-height: 1.6; 
+}
+
+.p5-representation {
+  position: relative;
+  width: 100%; 
+  height: 80px; 
+  margin: 25px 0; 
+  background-color: rgba(255, 255, 255, 0.1); 
+  border-radius: 8px;
+  overflow: hidden; 
+}
+
+#legend-container {
+  margin: 1px auto !important; 
+  width: 400px; 
+  height: 200px;
+  position: relative; 
+  background-color: transparent; 
+  display: block; 
+}
+
+#legend-container canvas {
+  margin: 0; 
+  padding: 0;
+  display: block; 
+}
+
+#scroll-hint {
+  position: absolute; 
+  bottom: -30px; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  color: #ffffff; 
+  font-size: 28px; 
+  animation: bounce 2s infinite;
+  pointer-events: none; 
+  z-index: 3; 
+}
+
+#scroll-hint {
+  position: absolute;
+  bottom: -40px; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  color: #000000; 
+  font-size: 40px; 
+  font-weight: bold; 
+  text-align: center; 
+  cursor: pointer; 
+  z-index: 3; 
+  width: 40px; 
+  height: 40px; 
+  animation: bounce 2s infinite; 
+  pointer-events: auto; 
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(-50%) translateY(0); 
+  }
+  40% {
+    transform: translateX(-50%) translateY(-15px); 
+  }
+  60% {
+    transform: translateX(-50%) translateY(-7px); 
+  }
+}
+
+#buttons-container {
+  position: absolute;
+  bottom: 100px;
+  left: 20%; 
+  transform: translateX(-50%); 
+  width: auto; 
+  z-index: 3; 
+  display: none; 
+  flex-direction: column; 
+  align-items: center; 
+  pointer-events: auto;
+  background-color: transparent; 
+  padding: 0; 
+}
+
+.buttons-row {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 0; 
+}
+
+.button-spacer {
+  width: 40px;
+  height: 50px;
+  flex-shrink: 0; 
+}
+
+.bottom-button {
+  width: 200px;
+  height: 50px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-family: "Helvetica", Arial, sans-serif;
+  position: relative; 
+  overflow: hidden; 
+  flex-shrink: 0; 
+}
+
+.bottom-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bottom-button:hover::before {
+  opacity: 1;
+}
+
+.bottom-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); 
+}
+
+.bottom-button:active {
+  transform: scale(0.98); 
+}
+
+@media (max-width: 1200px) {
+  #buttons-container {
+    left: 50%; 
+    transform: translateX(-50%);
+  }
+
+  .buttons-row {
+    gap: 20px; 
+  }
+
+  .button-spacer {
+    width: 20px; 
+  }
+}
+
+@media (max-width: 900px) {
+  .bottom-button {
+    width: 180px;
+    font-size: 18px; 
+  }
+
+  .button-spacer {
+    width: 15px;
+  }
+}
